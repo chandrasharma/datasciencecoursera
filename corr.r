@@ -1,14 +1,19 @@
+#Write a function that takes a directory of data files and a threshold for complete cases and calculates
+#the correlation between sulfate and nitrate for monitor locations where the number of completely
+#observed cases (on all variables) is greater than the threshold. The function should return a vector of
+#correlations for the monitors that meet the threshold requirement. If no monitors meet the threshold
+#requirement, then the function should return a numeric vector of length 0.
+
 corr <- function(directory, threshold=0){
+  
   id <- 1:332
-  ##idFrame <- data.frame("MonitorID" = id)  
+  
   dir <- getwd()  
   dir1 <- paste(dir, "specdata", sep="/")  
   allFiles <- list.files(dir1)   
   fileRange <- allFiles[id]
   fileList <- paste(dir1, fileRange, sep="/")
-  
-  ##print (fileList)
-   
+
   nobs1 <- NULL
   id2<-0
   id3<-NULL
@@ -24,7 +29,7 @@ corr <- function(directory, threshold=0){
   for(i in id){
     
     data <- read.csv(fileList[i])
-##print (data)
+ 
     strip <- data[,c(2,3,4)]
 
     sulfateOnly <- data.frame("sulfate"=data[c(2)])
